@@ -1,0 +1,52 @@
+<html>
+<style>
+.article{
+    outline: auto;
+    text-align: center;
+}
+.header{
+    text-align: center;
+}
+</style>
+
+<head>
+<title>LikeLion</title>
+</head>
+<div class="header"><h1>이게 "나라"다..</h1></div>
+
+
+<body>
+    <section id="main_container">
+    {% if request.user.is_authenticated%}
+    <div class="subject">
+        <div class="contents_box">
+            {% for mem in mem %}
+                
+            <div class="article">
+                {% if mem.photo %}
+                
+                <img src="{{ mem.photo.url }}"  alt="dd" width="140px" height="170px">
+                </br>  
+                {% endif %}   
+        
+                <p><a href="{% url 'profile_detail' mem.id %}">{{ mem.name }}</a></p>
+                <p>출생 {{ mem.birth }}</p>
+                <p>직업 {{ mem.job }}</p>
+                <p>데뷔 {{ mem.debut }}</p>	
+                <p>학력 {{ mem.school }}</p>
+                <p>사이트 <a href="{{ mem.site }}">링크</a></p>	
+                    
+        
+            {% endfor %}
+            
+            {% else %}
+            <a href ='http://127.0.0.1:8000/admin'>로그인</a>
+            {% endif %}
+        </div>
+    </div>
+</section>
+</body>
+</html>
+
+
+
